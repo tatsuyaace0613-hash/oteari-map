@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>お手洗いマップ データの出典</title>
+<meta name="description" content="お手洗いマップで利用しているオープンデータの出典とライセンス">
+<style>
+  :root {
+    --bg: #f7f6f2; --surface: #ffffff; --fg: #1f2328; --muted: #5b6168;
+    --line: #e2dfd6; --accent: #1f6f8b; --accent-soft: #e6f1f5; --note: #fff7e0; --note-line: #ecd9a0;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15181b; --surface: #1d2125; --fg: #e8eaed; --muted: #a5abb2;
+      --line: #30363c; --accent: #6fbad6; --accent-soft: #1d3540; --note: #2b2716; --note-line: #5a4f25;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15181b; --surface: #1d2125; --fg: #e8eaed; --muted: #a5abb2;
+    --line: #30363c; --accent: #6fbad6; --accent-soft: #1d3540; --note: #2b2716; --note-line: #5a4f25;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: 15px; line-height: 1.75;
+  }
+  .wrap {
+    max-width: 760px; margin: 0 auto;
+    padding-block: 32px 56px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  h1 { font-size: 1.5rem; line-height: 1.4; margin: 0 0 4px; text-wrap: balance; }
+  .updated { color: var(--muted); font-size: .85rem; margin: 0 0 24px; }
+  h2 { font-size: 1.1rem; margin: 36px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--line); }
+  p { margin: 0 0 12px; }
+  a { color: var(--accent); overflow-wrap: anywhere; }
+  .note {
+    background: var(--note); border: 1px solid var(--note-line); border-radius: 10px;
+    padding: 14px 16px; margin: 16px 0 8px;
+  }
+  .note ul { margin: 0; padding-left: 1.2em; }
+  .note li { margin: 4px 0; }
+  .sources { display: grid; gap: 12px; }
+  .source {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px; min-width: 0;
+  }
+  .source .org { font-size: .8rem; letter-spacing: .04em; color: var(--muted); margin: 0; }
+  .source .title { font-weight: 700; margin: 2px 0 8px; }
+  .source dl { display: grid; grid-template-columns: 6.5em 1fr; gap: 4px 10px; margin: 0; font-size: .9rem; }
+  .source dt { color: var(--muted); }
+  .source dd { margin: 0; min-width: 0; }
+  .tag {
+    display: inline-block; font-size: .78rem; padding: 1px 8px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent); margin-left: 6px; vertical-align: 1px;
+  }
+  .osm { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  footer { margin-top: 40px; color: var(--muted); font-size: .85rem; }
+  @media (max-width: 420px) { .source dl { grid-template-columns: 1fr; } .source dt { margin-top: 6px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>お手洗いマップ データの出典</h1>
+  <p class="updated">最終更新：2026年10月26日</p>
+
+  <p>お手洗いマップでは、全国の自治体が公開しているオープンデータと、OpenStreetMap のデータを利用して、トイレの位置と設備の情報を表示しています。</p>
+
+  <div class="note">
+    <ul>
+      <li>自治体のデータは、アプリで表示するために<strong>加工して利用しています</strong>（項目の整理、複数の資料の統合、重複の削除、位置の補正など）。</li>
+      <li>アプリに表示している情報は、各自治体が作成・保証したものではありません。</li>
+      <li>情報はデータを取得した時点のものです。工事や故障などで、一時的に使えない場合があります。最新の情報は各施設・自治体にご確認ください。</li>
+    </ul>
+  </div>
+
+  <h2>自治体のオープンデータ</h2>
+  <div class="sources">
+
+    <div class="source">
+      <p class="org">東京都（福祉局）</p>
+      <p class="title">車椅子使用者対応トイレのバリアフリー情報（令和７年度更新版）<span class="tag">加工して作成</span></p>
+      <dl>
+        <dt>内容</dt><dd>都立及び区市町村立施設等、都内鉄道駅の車椅子使用者対応トイレ</dd>
+        <dt>掲載元</dt><dd><a href="https://catalog.data.metro.tokyo.lg.jp/dataset/9d221d80-1006-4ef1-8155-266f854a4b62">東京都オープンデータカタログサイト</a></dd>
+        <dt>ライセンス</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ・ライセンス 表示 4.0 国際（CC BY 4.0）</a></dd>
+      </dl>
+    </div>
+
+    <div class="source">
+      <p class="org">福井県</p>
+      <p class="title">公衆トイレ一覧<span class="tag">加工して作成</span></p>
+      <dl>
+        <dt>掲載元</dt><dd><a href="https://www.pref.fukui.lg.jp/doc/dx-suishin/opendata/list_ct.html">福井県オープンデータ</a></dd>
+        <dt>ライセンス</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ・ライセンス 表示 4.0 国際（CC BY 4.0）</a></dd>
+      </dl>
+    </div>
+
+    <div class="source">
+      <p class="org">仙台市</p>
+      <p class="title">公衆トイレ一覧<span class="tag">加工して作成</span></p>
+      <dl>
+        <dt>掲載元</dt><dd><a href="https://www.city.sendai.jp/opendata/index.php">仙台市オープンデータ</a></dd>
+        <dt>ライセンス</dt><dd><a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ・ライセンス 表示（CC BY）</a></dd>
+      </dl>
+    </div>
+
+    <div class="source">
+      <p class="org">岐阜県 大垣市</p>
+      <p class="title">【大垣市】公衆トイレ一覧<span class="tag">加工して作成</span></p>
+      <dl>
+        <dt>掲載元</dt><dd><a href="https://gifu-opendata.pref.gifu.lg.jp/dataset/c212024-014">岐阜県オープンデータカタログサイト</a></dd>
+        <dt>ライセンス</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ・ライセンス 表示 4.0 国際（CC BY 4.0）</a></dd>
+      </dl>
+    </div>
+
+    <div class="source">
+      <p class="org">岐阜県 各務原市</p>
+      <p class="title">【各務原市】公園一覧<span class="tag">加工して作成</span></p>
+      <dl>
+        <dt>内容</dt><dd>トイレのある公園のみを利用</dd>
+        <dt>掲載元</dt><dd><a href="https://gifu-opendata.pref.gifu.lg.jp/dataset/c212130-013/resource/0b34fab9-e40d-4eaf-bd12-69675bb7a969">岐阜県オープンデータカタログサイト</a></dd>
+        <dt>ライセンス</dt><dd><a href="https://creativecommons.org/licenses/by/2.0/deed.ja">クリエイティブ・コモンズ・ライセンス 表示 2.0（CC BY 2.0）</a></dd>
+      </dl>
+    </div>
+
+  </div>
+
+  <h2>OpenStreetMap</h2>
+  <div class="osm">
+    <p>地図上のトイレの一部は、OpenStreetMap のデータを利用しています。</p>
+    <p>© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>（<a href="https://opendatacommons.org/licenses/odbl/">Open Database License（ODbL）</a>）</p>
+  </div>
+
+  <footer>
+    <p>お手洗いマップ（ReachQuiverCo.）</p>
+  </footer>
+</div>
+</body>
+</html>
