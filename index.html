@@ -24,173 +24,372 @@
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--fg);
+  body { margin: 0; background: var(--bg); color: var(--fg);
     font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
-    font-size: 15px; line-height: 1.75;
-  }
-  .wrap {
-    max-width: 760px; margin: 0 auto;
-    padding-block: 32px 56px;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-  }
+    font-size: 15px; line-height: 1.75; }
+  .wrap { max-width: 760px; margin: 0 auto; padding-block: 32px 56px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
   h1 { font-size: 1.5rem; line-height: 1.4; margin: 0 0 4px; text-wrap: balance; }
   .updated { color: var(--muted); font-size: .85rem; margin: 0 0 24px; }
   h2 { font-size: 1.1rem; margin: 36px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--line); }
   p { margin: 0 0 12px; }
   a { color: var(--accent); overflow-wrap: anywhere; }
-  .note {
-    background: var(--note); border: 1px solid var(--note-line); border-radius: 10px;
-    padding: 14px 16px; margin: 16px 0 8px;
-  }
-  .note ul { margin: 0; padding-left: 1.2em; }
-  .note li { margin: 4px 0; }
-  .sources { display: grid; gap: 12px; }
-  .source {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-    padding: 14px 16px; min-width: 0;
-  }
-  .source .org { font-size: .8rem; letter-spacing: .04em; color: var(--muted); margin: 0; }
-  .source .title { font-weight: 700; margin: 2px 0 8px; }
-  .source dl { display: grid; grid-template-columns: 6.5em 1fr; gap: 4px 10px; margin: 0; font-size: .9rem; }
-  .source dt { color: var(--muted); }
-  .source dd { margin: 0; min-width: 0; }
-  .tag {
-    display: inline-block; font-size: .78rem; padding: 1px 8px; border-radius: 999px;
-    background: var(--accent-soft); color: var(--accent); margin-left: 6px; vertical-align: 1px;
-  }
+  .note { background: var(--note); border: 1px solid var(--note-line); border-radius: 10px; padding: 14px 16px; margin: 16px 0 8px; }
+  .note ul { margin: 0; padding-left: 1.2em; } .note li { margin: 4px 0; }
+  .pref { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin: 0 0 12px; min-width: 0; }
+  .pref h3 { font-size: 1rem; margin: 0 0 6px; display: flex; align-items: baseline; gap: 8px; }
+  .count { font-size: .78rem; font-weight: 400; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 0 8px; }
+  .list { list-style: none; margin: 0; padding: 0; }
+  .list li { padding: 8px 0; border-top: 1px solid var(--line); font-size: .92rem; }
+  .list li:first-child { border-top: 0; }
+  .who { font-weight: 700; margin-right: 2px; }
+  .meta { display: block; color: var(--muted); font-size: .82rem; }
   .osm { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
   footer { margin-top: 40px; color: var(--muted); font-size: .85rem; }
-  @media (max-width: 420px) { .source dl { grid-template-columns: 1fr; } .source dt { margin-top: 6px; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>お手洗いマップ データの出典</h1>
-  <p class="updated">最終更新：2026年10月26日</p>
-
+  <p class="updated">最終更新：2026年10月27日</p>
   <p>お手洗いマップでは、全国の自治体が公開しているオープンデータと、OpenStreetMap のデータを利用して、トイレの位置と設備の情報を表示しています。</p>
-
   <div class="note">
     <ul>
-      <li>自治体のデータは、アプリで表示するために<strong>加工して利用しています</strong>（項目の整理、複数の資料の統合、重複の削除、位置の補正など）。</li>
+      <li>自治体のデータは、アプリで表示するために<strong>加工して利用しています</strong>（項目の整理、複数の資料の統合、重複の削除、位置の補正など）。以下の資料はすべて、各自治体の資料を加工して作成したものです。</li>
       <li>アプリに表示している情報は、各自治体が作成・保証したものではありません。</li>
       <li>情報はデータを取得した時点のものです。工事や故障などで、一時的に使えない場合があります。最新の情報は各施設・自治体にご確認ください。</li>
     </ul>
   </div>
-
-  <h2>自治体のオープンデータ</h2>
-  <div class="sources">
-
-    <div class="source">
-      <p class="org">東京都（福祉局）</p>
-      <p class="title">車椅子使用者対応トイレのバリアフリー情報（令和７年度更新版）<span class="tag">加工して作成</span></p>
-      <dl>
-        <dt>内容</dt><dd>都立及び区市町村立施設等、都内鉄道駅の車椅子使用者対応トイレ</dd>
-        <dt>掲載元</dt><dd><a href="https://catalog.data.metro.tokyo.lg.jp/dataset/9d221d80-1006-4ef1-8155-266f854a4b62">東京都オープンデータカタログサイト</a></dd>
-        <dt>ライセンス</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ・ライセンス 表示 4.0 国際（CC BY 4.0）</a></dd>
-      </dl>
-    </div>
-
-    <div class="source">
-      <p class="org">東京都内の区市（30区市）</p>
-      <p class="title">各区市の公衆トイレ一覧<span class="tag">加工して作成</span></p>
-      <dl>
-        <dt>資料</dt><dd>千代田区・中央区・墨田区・江東区・目黒区・中野区・杉並区・豊島区・荒川区・板橋区・葛飾区・江戸川区「公衆トイレ一覧」（目黒区は「公衆トイレ」）、新宿区「新宿区の公衆トイレ一覧」、台東区「トイレ情報（公衆・公園トイレ）」、練馬区「公園トイレ一覧」、八王子市「八王子市 公共トイレオープンデータ」、青梅市「東京都青梅市における公衆トイレ一覧」、町田市「公共トイレマップ」、調布市「13.公衆トイレ一覧」、あきる野市「観光トイレ一覧」、武蔵野市・小金井市・小平市・日野市・国分寺市・国立市・狛江市・東大和市・東久留米市・西東京市「公衆トイレ一覧」</dd>
-        <dt>作成者</dt><dd>上記の各区市</dd>
-        <dt>掲載元</dt><dd><a href="https://catalog.data.metro.tokyo.lg.jp/">東京都オープンデータカタログサイト</a>（八王子市は<a href="https://www.city.hachioji.tokyo.jp/shisei/001/006/001/002/p037425.html">八王子市ホームページ</a>、日野市は<a href="https://www.city.hino.lg.jp/opendata/about/1026816/1026908.html">日野市ホームページ</a>）</dd>
-        <dt>ライセンス</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ・ライセンス 表示 4.0 国際（CC BY 4.0）</a></dd>
-      </dl>
-    </div>
-
-    <div class="source">
-      <p class="org">福井県</p>
-      <p class="title">公衆トイレ一覧<span class="tag">加工して作成</span></p>
-      <dl>
-        <dt>掲載元</dt><dd><a href="https://www.pref.fukui.lg.jp/doc/dx-suishin/opendata/list_ct.html">福井県オープンデータ</a></dd>
-        <dt>ライセンス</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ・ライセンス 表示 4.0 国際（CC BY 4.0）</a></dd>
-      </dl>
-    </div>
-
-    <div class="source">
-      <p class="org">福井県 福井市</p>
-      <p class="title">公衆トイレ一覧<span class="tag">加工して作成</span></p>
-      <dl>
-        <dt>掲載元</dt><dd><a href="https://www.city.fukui.lg.jp/sisei/tokei/opendata/p018970.html">福井市オープンデータ</a></dd>
-        <dt>ライセンス</dt><dd><a href="https://creativecommons.org/licenses/by/2.1/jp/">クリエイティブ・コモンズ・ライセンス 表示 2.1 日本（CC BY 2.1 JP）</a></dd>
-      </dl>
-    </div>
-
-    <div class="source">
-      <p class="org">大阪府</p>
-      <p class="title">公衆トイレ一覧<span class="tag">加工して作成</span></p>
-      <dl>
-        <dt>内容</dt><dd>おおさかユニバーサルデザインマップに掲載されている公衆トイレ</dd>
-        <dt>掲載元</dt><dd><a href="https://data.bodik.jp/dataset/270008_barrier_free_toilet">大阪府オープンデータカタログサイト</a></dd>
-        <dt>ライセンス</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ・ライセンス 表示 4.0 国際（CC BY 4.0）</a></dd>
-      </dl>
-    </div>
-
-    <div class="source">
-      <p class="org">石川県と県内の10市町</p>
-      <p class="title">公衆トイレ一覧<span class="tag">加工して作成</span></p>
-      <dl>
-        <dt>作成者</dt><dd>石川県・金沢市・小松市・加賀市・かほく市・白山市・能美市・野々市市・津幡町・内灘町・宝達志水町</dd>
-        <dt>掲載元</dt><dd><a href="https://ckan.opendata.pref.ishikawa.lg.jp/">石川県オープンデータカタログ</a></dd>
-        <dt>ライセンス</dt><dd><a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ・ライセンス 表示（CC BY）</a></dd>
-      </dl>
-    </div>
-
-    <div class="source">
-      <p class="org">静岡県と県内の17市町</p>
-      <p class="title">公衆トイレ一覧<span class="tag">加工して作成</span></p>
-      <dl>
-        <dt>作成者</dt><dd>静岡県・沼津市・三島市・富士宮市・伊東市・掛川市・藤枝市・御殿場市・下田市・裾野市・湖西市・御前崎市・菊川市・牧之原市・西伊豆町・函南町・長泉町・森町</dd>
-        <dt>掲載元</dt><dd><a href="https://opendata.pref.shizuoka.jp/">静岡県オープンデータカタログ</a></dd>
-        <dt>ライセンス</dt><dd><a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ・ライセンス 表示（CC BY）</a>（森町は<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">表示 4.0 国際</a>）</dd>
-      </dl>
-    </div>
-
-    <div class="source">
-      <p class="org">仙台市</p>
-      <p class="title">公衆トイレ一覧<span class="tag">加工して作成</span></p>
-      <dl>
-        <dt>掲載元</dt><dd><a href="https://www.city.sendai.jp/opendata/index.php">仙台市オープンデータ</a></dd>
-        <dt>ライセンス</dt><dd><a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ・ライセンス 表示（CC BY）</a></dd>
-      </dl>
-    </div>
-
-    <div class="source">
-      <p class="org">岐阜県 大垣市</p>
-      <p class="title">【大垣市】公衆トイレ一覧<span class="tag">加工して作成</span></p>
-      <dl>
-        <dt>掲載元</dt><dd><a href="https://gifu-opendata.pref.gifu.lg.jp/dataset/c212024-014">岐阜県オープンデータカタログサイト</a></dd>
-        <dt>ライセンス</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ・ライセンス 表示 4.0 国際（CC BY 4.0）</a></dd>
-      </dl>
-    </div>
-
-    <div class="source">
-      <p class="org">岐阜県 各務原市</p>
-      <p class="title">【各務原市】公園一覧<span class="tag">加工して作成</span></p>
-      <dl>
-        <dt>内容</dt><dd>トイレのある公園のみを利用</dd>
-        <dt>掲載元</dt><dd><a href="https://gifu-opendata.pref.gifu.lg.jp/dataset/c212130-013/resource/0b34fab9-e40d-4eaf-bd12-69675bb7a969">岐阜県オープンデータカタログサイト</a></dd>
-        <dt>ライセンス</dt><dd><a href="https://creativecommons.org/licenses/by/2.0/deed.ja">クリエイティブ・コモンズ・ライセンス 表示 2.0（CC BY 2.0）</a></dd>
-      </dl>
-    </div>
-
-  </div>
-
+  <h2>自治体のオープンデータ（30都道府県・173資料）</h2>
+    <section class="pref">
+      <h3>北海道<span class="count">4件</span></h3>
+      <ul class="list">
+        <li><span class="who">旭川市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.asahikawa.hokkaido.jp/kurashi/135/179/184/d063102_d/fil/chikubetu.pdf">旭川市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/2.1/jp/">クリエイティブ・コモンズ 表示 2.1 日本（CC BY 2.1 JP）</a></span></li>
+        <li><span class="who">網走市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.abashiri.hokkaido.jp/soshiki/3/1447.html">網走市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">士別市</span>「施設の利用について（多目的トイレ）」<span class="meta">掲載元：<a href="https://www.city.shibetsu.lg.jp/soshikikarasagasu/chikihukushika/chikihukushikakari/6083.html">士別市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">上砂川町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/014257_public_toilet/resource/5b4432a8-39f1-4288-9db6-b0272377f60d">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>岩手県<span class="count">3件</span></h3>
+      <ul class="list">
+        <li><span class="who">盛岡市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://iwate.dataeye.jp/resources/785">岩手県及び市町村共同オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">北上市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.kitakami.iwate.jp/life/soshikikarasagasu/toshipromotionka/jouhouseisakusuishinshitsu/1_1/opendata/27772.html">北上市ホームページ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">久慈市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.kuji.lg.jp/soshiki/johoshisutemu/1/3/1/1379.html">久慈市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>宮城県<span class="count">14件</span></h3>
+      <ul class="list">
+        <li><span class="who">仙台市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/">掲載ページ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">石巻市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/33016">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">塩竈市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/1422">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">白石市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/1459">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">多賀城市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/1432">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">東松島市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/32353">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">村田町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/265">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">亘理町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/32238">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">松島町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/1414">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">大和町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/1470">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">柴田町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/367">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">登米市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/32610">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">名取市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/32343">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">栗原市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://miyagi.dataeye.jp/resources/1396">宮城県及び市町村共同 オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>秋田県<span class="count">1件</span></h3>
+      <ul class="list">
+        <li><span class="who">鹿角市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/052094_p_9427_9427/resource/ffb7949b-072f-4927-865b-cfc28041c3a9">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>山形県<span class="count">4件</span></h3>
+      <ul class="list">
+        <li><span class="who">山形市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.yamagata-yamagata.lg.jp/opendata/category/1007068/1004664.html">山形市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">村山市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.murayama.lg.jp/shisei/tokei/tokei/opendata.html">村山市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">南陽市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="http://www.city.nanyo.yamagata.jp/jouhou/3622">南陽市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">河北町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.town.kahoku.yamagata.jp/gyouseizyouhou/matinogaiyou/toukei_o-punde-ta/opendata/4722.html">河北町ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>栃木県<span class="count">1件</span></h3>
+      <ul class="list">
+        <li><span class="who">宇都宮市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://catalog.city.utsunomiya.tochigi.jp/dataset/koushuutoireichiran/resource/5ae07db5-8e62-4e51-985b-3aa6c54b5029">宇都宮市オープンデータポータル</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>埼玉県<span class="count">11件</span></h3>
+      <ul class="list">
+        <li><span class="who">川越市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.saitama.lg.jp/resources/6476">埼玉県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">熊谷市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.saitama.lg.jp/resources/5972">埼玉県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">本庄市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.saitama.lg.jp/resources/5373">掲載ページ</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">春日部市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.saitama.lg.jp/resources/8246">埼玉県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">狭山市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.saitama.lg.jp/resources/4482">埼玉県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">鴻巣市</span>「【鴻巣市】公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.saitama.lg.jp/resources/4575">埼玉県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">上尾市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.saitama.lg.jp/resources/871">埼玉県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">越谷市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.saitama.lg.jp/resources/7796">埼玉県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">和光市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.saitama.lg.jp/resources/5194">埼玉県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">新座市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.saitama.lg.jp/resources/1077">埼玉県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">坂戸市</span>「【坂戸市】公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.saitama.lg.jp/resources/7306">埼玉県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>千葉県<span class="count">7件</span></h3>
+      <ul class="list">
+        <li><span class="who">銚子市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.chiba.lg.jp/resources/52589">千葉県オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">浦安市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.urayasu.lg.jp/shisei/keikaku/joho/1022110/1025892/1025899/1039099.html">浦安市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">流山市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.chiba.lg.jp/resources/55119">千葉県オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">栄町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.chiba.lg.jp/resources/56789">千葉県オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">匝瑳市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.chiba.lg.jp/resources/56637">千葉県オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">大網白里市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.chiba.lg.jp/resources/56662">千葉県オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">館山市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.chiba.lg.jp/resources/53594">千葉県オープンデータポータルサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>東京都<span class="count">32件</span></h3>
+      <ul class="list">
+        <li><span class="who">東京都（福祉局）</span>「車椅子使用者対応トイレのバリアフリー情報（令和７年度更新版）」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/fukushi/R07/01/4_tonaitetsudoueki_barrier-free-wc.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">東京都（福祉局）</span>「車椅子使用者対応トイレのバリアフリー情報（令和７年度更新版）」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/fukushi/R07/01/3_koukyoshisetsu_barieer_free_wc.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">千代田区</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/chiyoda/131016_13public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">中央区</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.chuo.lg.jp/documents/984/kousyuutoilet.csv">中央区ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">新宿区</span>「新宿区の公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.shinjuku.lg.jp/content/000399974.csv">新宿区ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">台東区</span>「トイレ情報（公衆・公園トイレ）」<span class="meta">掲載元：<a href="https://www.city.taito.lg.jp/kusei/online/opendata/seikatu/shisethutizujouhou.files/20250314_koshu_koen_toilet.csv">台東区ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">墨田区</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/sumida/131075_public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">江東区</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/koto/131083_013_public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">目黒区</span>「公衆トイレ」<span class="meta">掲載元：<a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t131105d0000000040">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">中野区</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www2.wagmap.jp/nakanodatamap/nakanodatamap/opendatafile/map_50/CSV/opendata_550070.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">杉並区</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.suginami.tokyo.jp/documents/1609/131156_public_toilet.csv">杉並区ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">荒川区</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.arakawa.tokyo.jp/documents/23112/131181_public_toilet.csv">荒川区ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">板橋区</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/itabashi/131199_public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">練馬区</span>「公園トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.nerima.tokyo.jp/kusei/tokei/opendata/opendatasite/matidukuri/public_toilet.files/131202_public_toilet.csv">練馬区ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">葛飾区</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/katsushika/131229_public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">江戸川区</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/edogawa/131237_public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">八王子市</span>「八王子市 公共トイレオープンデータ」<span class="meta">掲載元：<a href="https://www.city.hachioji.tokyo.jp/shisei/001/006/001/002/p037425.html">八王子市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">武蔵野市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/musashino/132039_public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">青梅市</span>「東京都青梅市における公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/ome/132055_public_toilet.xlsx">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">調布市</span>「13.公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.chofu.lg.jp/documents/13850/132080_public_toilet.csv">調布市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">町田市</span>「公共トイレマップ」<span class="meta">掲載元：<a href="https://www.city.machida.tokyo.jp/shisei/opendata/chizujoho/koukyoutoire.files/132098_public_toilet.csv">町田市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">小金井市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/koganei/13_publictoilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">小平市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/kodaira/132110_public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">日野市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.hino.lg.jp/opendata/about/1026816/1026908.html">日野市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">国分寺市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/kokubunji/132144_public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">国立市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/kunitachi/132152_public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">狛江市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/komae/132195_public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">東大和市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/higashiyamato/ods/132209_public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">東久留米市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/higashikurume/132225_public_toilet.csv">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">あきる野市</span>「観光トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.akiruno.tokyo.jp/cmsfiles/contents/0000015/15465/132284_tourist-toilets_2022.csv">あきる野市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">西東京市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.opendata.metro.tokyo.lg.jp/nishitokyo/132292_public_toilet.xlsx">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">豊島区</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://catalog.data.metro.tokyo.lg.jp/">東京都オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>神奈川県<span class="count">7件</span></h3>
+      <ul class="list">
+        <li><span class="who">平塚市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.hiratsuka.kanagawa.jp/keikaku/page81_00022.html">平塚市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">平塚市</span>「公共施設一覧（トイレのある施設のみ）」<span class="meta">掲載元：<a href="https://www.city.hiratsuka.kanagawa.jp/keikaku/page81_00022.html">平塚市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">茅ヶ崎市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.chigasaki.kanagawa.jp/jyohosuishin/1045355/1045162.html">茅ヶ崎市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">逗子市</span>「観光・海浜公衆トイレ情報」<span class="meta">掲載元：<a href="https://www.city.zushi.kanagawa.jp/shiminkatsudo/kanko/1004347/1004351.html">逗子市公式サイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">三浦市</span>「公衆便所のご案内（観光客のみなさまへ）」<span class="meta">掲載元：<a href="https://www.city.miura.kanagawa.jp/soshiki/kankoshokoka/kankoshokoka_kanko/toilet/7444.html">三浦市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">大和市</span>「市内バリアフリートイレ」<span class="meta">掲載元：<a href="https://www.city.yamato.lg.jp/material/files/group/33/sinaibariahuri-toire5.pdf">大和市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">大磯町</span>「公共施設一覧（トイレのある施設のみ）」<span class="meta">掲載元：<a href="https://www.town.oiso.kanagawa.jp/soshiki/seisaku/seisaku/tantou/dx/11460.html">大磯町ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>富山県<span class="count">2件</span></h3>
+      <ul class="list">
+        <li><span class="who">魚津市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.uozu.toyama.jp/guide/svGuideDtl.aspx?servno=14628">魚津市ホームページ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">滑川市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.namerikawa.toyama.jp/soshiki/dx/opendata/6631.html">滑川市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>石川県<span class="count">11件</span></h3>
+      <ul class="list">
+        <li><span class="who">石川県</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://ckan.opendata.pref.ishikawa.lg.jp/dataset/860c2791-61ca-45ed-a05f-42d25c98e7f5">石川県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">金沢市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://ckan.opendata.pref.ishikawa.lg.jp/dataset/172014-public_toilet/resource/f5657d2a-2c15-46a8-a8cd-ee81e787bd06">石川県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">小松市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://ckan.opendata.pref.ishikawa.lg.jp/dataset/172031_toilet/resource/a07d7287-6031-45db-b2cc-6ab446e31383">石川県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">加賀市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://ckan.opendata.pref.ishikawa.lg.jp/dataset/172065_publictoilet/resource/b547be5f-9144-489c-8760-79a33479f1b8">石川県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">かほく市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://ckan.opendata.pref.ishikawa.lg.jp/dataset/172090-public_toilet/resource/4d85d620-45c5-442a-86c5-5595c58d3f77">石川県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">白山市</span>「白山市 公衆トイレ一覧」<span class="meta">掲載元：<a href="https://ckan.opendata.pref.ishikawa.lg.jp/dataset/e6323919-396c-4d2e-aaed-16eaf40f67e1">石川県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">能美市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://ckan.opendata.pref.ishikawa.lg.jp/dataset/172111_toilet/resource/ae86627d-4032-4037-ad75-5cfd411f9867">石川県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">野々市市</span>「野々市市 公衆トイレ一覧」<span class="meta">掲載元：<a href="https://ckan.opendata.pref.ishikawa.lg.jp/dataset/1579f08e-697f-4d28-a912-944bad7f78d3">石川県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">津幡町</span>「津幡町 公衆トイレ一覧」<span class="meta">掲載元：<a href="https://ckan.opendata.pref.ishikawa.lg.jp/dataset/7d0abca9-314b-4192-af2e-938d21e15074">石川県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">内灘町</span>「内灘町 公衆トイレ一覧」<span class="meta">掲載元：<a href="https://ckan.opendata.pref.ishikawa.lg.jp/dataset/6dcb43ec-e289-4630-a45b-f79026c768b7">石川県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">宝達志水町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://ckan.opendata.pref.ishikawa.lg.jp/dataset/c363a37a-8179-4093-9ef1-91120b802958">石川県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>福井県<span class="count">2件</span></h3>
+      <ul class="list">
+        <li><span class="who">福井県</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.pref.fukui.lg.jp/doc/dx-suishin/opendata/list_ct.html">福井県オープンデータ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">福井市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.fukui.lg.jp/sisei/tokei/opendata/p018970.html">福井市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/2.1/jp/">クリエイティブ・コモンズ 表示 2.1 日本（CC BY 2.1 JP）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>山梨県<span class="count">1件</span></h3>
+      <ul class="list">
+        <li><span class="who">山中湖村</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.vill.yamanakako.lg.jp/info/647">山中湖村ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>長野県<span class="count">7件</span></h3>
+      <ul class="list">
+        <li><span class="who">長野市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.nagano.nagano.jp/n023500/contents/p004876.html">長野市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">上田市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.ueda.nagano.jp/soshiki/tokei/3784.html">上田市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">須坂市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.suzaka.nagano.jp/soshiki/1021/1572.html">須坂市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">東御市</span>「公共施設一覧（トイレのある施設のみ）」<span class="meta">掲載元：<a href="https://www.city.tomi.nagano.jp/category/toukeidata/166008.html">東御市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">茅野市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/202142_public_toilet/resource/20ee6476-a16d-43c6-b678-3f8342821767">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">茅野市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/202142_public_toilet/resource/e81a0553-ada6-443d-a33e-5ca24500f641">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">茅野市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/202142_public_toilet/resource/071c6758-f4a3-4c2d-9906-c3240983f423">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>岐阜県<span class="count">5件</span></h3>
+      <ul class="list">
+        <li><span class="who">大垣市</span>「【大垣市】公衆トイレ一覧」<span class="meta">掲載元：<a href="https://gifu-opendata.pref.gifu.lg.jp/dataset/8a6f98ed-bad9-4fc9-b31d-7c04d8692dc2">岐阜県オープンデータ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">各務原市</span>「【各務原市】公園一覧（トイレのある公園のみ）」<span class="meta">掲載元：<a href="https://gifu-opendata.pref.gifu.lg.jp/dataset/c212130-013/resource/0b34fab9-e40d-4eaf-bd12-69675bb7a969">岐阜県オープンデータ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/2.0/deed.ja">クリエイティブ・コモンズ 表示 2.0（CC BY 2.0）</a></span></li>
+        <li><span class="who">山県市</span>「公園一覧（トイレのある公園のみ）」<span class="meta">掲載元：<a href="https://gifu-opendata.pref.gifu.lg.jp/dataset/c212156-014/resource/6cc7a47a-8071-4486-91ed-4fd6e47913d3">岐阜県オープンデータ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/2.0/deed.ja">クリエイティブ・コモンズ 表示 2.0（CC BY 2.0）</a></span></li>
+        <li><span class="who">本巣市</span>「公園一覧（トイレのある公園のみ）」<span class="meta">掲載元：<a href="https://gifu-opendata.pref.gifu.lg.jp/dataset/c212181-016/resource/9ea7fda7-0598-4515-ba28-dc476a2c4432">岐阜県オープンデータ</a>　ライセンス：パブリックドメイン</span></li>
+        <li><span class="who">海津市</span>「公園一覧（トイレのある公園のみ）」<span class="meta">掲載元：<a href="https://gifu-opendata.pref.gifu.lg.jp/dataset/c212211-013/resource/cd82900d-c0ad-451f-bac2-58526a7098eb">岐阜県オープンデータ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/2.0/deed.ja">クリエイティブ・コモンズ 表示 2.0（CC BY 2.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>静岡県<span class="count">18件</span></h3>
+      <ul class="list">
+        <li><span class="who">静岡県</span>「公衆トイレ一覧（自然ふれあい施設）」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/12649.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">三島市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/10770.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">沼津市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/9155.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">西伊豆町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/8079.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">伊東市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/9573.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">掛川市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/9776.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">湖西市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/12251.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">函南町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/10228.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">長泉町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/9619.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">富士宮市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/8905.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">下田市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/9500.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">菊川市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/11012.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">御殿場市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/9490.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">牧之原市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/9850.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">裾野市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/10922.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">藤枝市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/10239.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">御前崎市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/8706.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">森町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://opendata.pref.shizuoka.jp/dataset/12665.html">静岡県オープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>愛知県<span class="count">1件</span></h3>
+      <ul class="list">
+        <li><span class="who">日進市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/232301_p_7801_7801/resource/3ed16ba0-2799-4361-bf51-6aaceeb7c0c1">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>滋賀県<span class="count">1件</span></h3>
+      <ul class="list">
+        <li><span class="who">彦根市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/252026_koushu_toilet20210207/resource/c0d703e8-c2e3-4ea5-966f-6bfca1a00bec">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>大阪府<span class="count">4件</span></h3>
+      <ul class="list">
+        <li><span class="who">大阪府</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/270008_barrier_free_toilet/resource/7fe0084f-94e1-4c4f-8010-028ea0596bfd">大阪府オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">貝塚市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/272086_publictoilet/resource/c2980113-7b40-4cae-92a6-ad70816f5c74">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">箕面市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/272205_public_toilet/resource/d4272228-1f51-49d6-b4b6-b536d50fec25">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">東大阪市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/272272_13/resource/da2f9bef-57b6-43fd-844e-c9666fc4e096">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>兵庫県<span class="count">7件</span></h3>
+      <ul class="list">
+        <li><span class="who">明石市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.akashi.lg.jp/soumu/j_kanri_ka/shise/opendata/index.html">明石市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">明石市</span>「公共施設一覧（トイレのある施設のみ）」<span class="meta">掲載元：<a href="https://www.city.akashi.lg.jp/soumu/j_kanri_ka/shise/opendata/index.html">明石市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">洲本市</span>「公共施設一覧（トイレのある施設のみ）」<span class="meta">掲載元：<a href="https://data.city.sumoto.lg.jp/dataset/public_facilities/resource/b0259e01-cf5e-4e13-8000-6e4c6d85b0e5">洲本市オープンデータ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">芦屋市</span>「バリアフリー情報（保健福祉施設）」<span class="meta">掲載元：<a href="https://www.city.ashiya.lg.jp/fukushi/barire_free_fukusi.html">芦屋市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/2.1/jp/">クリエイティブ・コモンズ 表示 2.1 日本（CC BY 2.1 JP）</a></span></li>
+        <li><span class="who">丹波市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/282235_toilet/resource/7a7df301-4d30-46ea-bc9b-72157bfcccd0">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">たつの市</span>「公共施設一覧（トイレのある施設のみ）」<span class="meta">掲載元：<a href="https://www.city.tatsuno.lg.jp/gyosei/gaiyo/2/4953.html">たつの市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">たつの市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.tatsuno.lg.jp/gyosei/gaiyo/2/4953.html">たつの市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>奈良県<span class="count">7件</span></h3>
+      <ul class="list">
+        <li><span class="who">大和郡山市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.yamatokoriyama.lg.jp/soshiki/kikakuseisakuka/shinotorikumi/6/3404.html">大和郡山市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">桜井市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.sakurai.lg.jp/sosiki/soumu/innovationsuisinsitsu/sakuraisiopundeta/8535.html">桜井市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">桜井市</span>「公共施設一覧（トイレのある施設のみ）」<span class="meta">掲載元：<a href="https://www.city.sakurai.lg.jp/sosiki/soumu/innovationsuisinsitsu/sakuraisiopundeta/8535.html">桜井市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">御所市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.gose.nara.jp/0000002623.html">御所市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">三郷町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/293431_public_toilet/resource/1033aa68-0a02-4c7a-bacd-a613a4d32b13">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">斑鳩町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.town.ikaruga.nara.jp/0000001682.html">斑鳩町ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">田原本町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://www.town.tawaramoto.nara.jp/gyosei/open_data/open_data_list/index.html">田原本町ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>和歌山県<span class="count">2件</span></h3>
+      <ul class="list">
+        <li><span class="who">橋本市</span>「オストメイト対応トイレ一覧」<span class="meta">掲載元：<a href="https://www.city.hashimoto.lg.jp/material/files/group/43/osutomeito011121.pdf">橋本市ホームページ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/2.1/jp/">クリエイティブ・コモンズ 表示 2.1 日本（CC BY 2.1 JP）</a></span></li>
+        <li><span class="who">紀美野町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/303046_public_toilet/resource/206443ec-1985-43b8-b18b-2a7fdf224a48">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>島根県<span class="count">1件</span></h3>
+      <ul class="list">
+        <li><span class="who">松江市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://shimane-opendata.jp/">島根県オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/2.1/jp/">クリエイティブ・コモンズ 表示 2.1 日本（CC BY 2.1 JP）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>広島県<span class="count">4件</span></h3>
+      <ul class="list">
+        <li><span class="who">三原市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://hiroshima-opendata.dataeye.jp/resources/13695">広島広域都市圏・広島県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">府中市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://hiroshima-opendata.dataeye.jp/resources/14546">広島広域都市圏・広島県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">海田町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://hiroshima-opendata.dataeye.jp/resources/26400">広島広域都市圏・広島県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+        <li><span class="who">熊野町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://hiroshima-opendata.dataeye.jp/resources/9653">広島広域都市圏・広島県オープンデータポータルサイト</a>　ライセンス：<a href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0">公共データ利用規約 第1.0版（PDL1.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>山口県<span class="count">8件</span></h3>
+      <ul class="list">
+        <li><span class="who">山口県</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://yamaguchi-opendata.jp/ckan/dataset/_public_toilet/resource/f39d8c4b-57fb-4403-b3ca-8b1f2d5d3cd2">掲載ページ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">宇部市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://yamaguchi-opendata.jp/ckan/dataset/352021_ubetoile/resource/41ba3101-1336-4f80-bf61-925fb9bba555">宇部市オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">宇部市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://yamaguchi-opendata.jp/ckan/dataset/352021_ubetoile/resource/8906d20b-4f6d-46a3-bcfd-930dc349f272">宇部市オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">宇部市</span>「多目的トイレ一覧」<span class="meta">掲載元：<a href="https://yamaguchi-opendata.jp/ckan/dataset/352021_tamokuteki/resource/a2c6ee34-738b-4575-9b14-338e6f906988">宇部市オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">下松市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://yamaguchi-opendata.jp/ckan/dataset/352071_public_toilet/resource/a72f5c7d-b723-47bb-a41c-13807654ff67">山口県オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">柳井市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://hiroshima-opendata.dataeye.jp/resources/9715">山口県オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">美祢市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://yamaguchi-opendata.jp/ckan/dataset/352136_public_toilet/resource/71e27523-18e1-4746-a59d-e86133eab0fb">山口県オープンデータカタログサイト</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+        <li><span class="who">周南市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://yamaguchi-opendata.jp/ckan/dataset/public_toilet/resource/1adf7453-e002-4bea-b947-ba2e7216879f">周南市オープンデータ</a>　ライセンス：<a href="https://creativecommons.jp/licenses/">クリエイティブ・コモンズ 表示（CC BY）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>愛媛県<span class="count">1件</span></h3>
+      <ul class="list">
+        <li><span class="who">砥部町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/384020_public_toilet/resource/78f5e185-e155-4cfc-b500-e79f4af9c698">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>福岡県<span class="count">3件</span></h3>
+      <ul class="list">
+        <li><span class="who">春日市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/402184_public_toilet/resource/5525bc86-f27c-4e95-afeb-30eccb0cb775">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">久留米市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/402036_0001500_00031/resource/f28adf53-bf89-460c-a40d-ffeebbef17cc">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">飯塚市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/402052_08/resource/be39b03a-ec85-4754-8cf4-3155c17cc321">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>熊本県<span class="count">2件</span></h3>
+      <ul class="list">
+        <li><span class="who">上天草市</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/432121_public_toilet_1/resource/a707e98a-f241-4d08-b3ac-7cd26de38133">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">氷川町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/434680_public_toilet/resource/db8fcf4d-89e5-424f-a62c-720e7b5479cf">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
+    <section class="pref">
+      <h3>沖縄県<span class="count">2件</span></h3>
+      <ul class="list">
+        <li><span class="who">南風原町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/473502_public_toilet/resource/50d380a8-61e9-4efb-be93-9350da3a7146">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+        <li><span class="who">竹富町</span>「公衆トイレ一覧」<span class="meta">掲載元：<a href="https://data.bodik.jp/dataset/085a3a61-9e01-4c3a-a9c4-e8b847b947c0/resource/9d30be41-656f-4af9-8517-7251bfe1290f">BODIKオープンデータカタログ</a>　ライセンス：<a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></span></li>
+      </ul>
+    </section>
   <h2>OpenStreetMap</h2>
   <div class="osm">
     <p>地図上のトイレの一部は、OpenStreetMap のデータを利用しています。</p>
     <p>© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>（<a href="https://opendatacommons.org/licenses/odbl/">Open Database License（ODbL）</a>）</p>
   </div>
-
-  <footer>
-    <p>お手洗いマップ（ReachQuiverCo.）</p>
-  </footer>
+  <footer><p>お手洗いマップ（ReachQuiverCo.）</p></footer>
 </div>
 </body>
 </html>
